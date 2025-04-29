@@ -5,7 +5,6 @@ import 'package:we_care/features/patient/presintation/cubit/patient_cubit.dart';
 
 class HomeLayout extends StatelessWidget {
   const HomeLayout({super.key});
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PatientCubit, PatientState>(

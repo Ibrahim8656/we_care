@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class AppStyles {
-  static const TextStyle styleblold40 = TextStyle(
+  static  TextStyle styleblold40 = TextStyle(
     fontSize: 40,
     fontWeight: FontWeight.bold,
   );

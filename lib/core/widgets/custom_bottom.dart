@@ -4,10 +4,12 @@ import 'package:we_care/core/utils/app_styles.dart';
 
 class custom_bottom extends StatelessWidget {
   const custom_bottom({
-    super.key, required this.color, required this.text,
+    super.key, required this.color, required this.text, this.fontSize,
   });
   final Color color;
   final String text;
+  final double? fontSize;
+
   
 
   @override
@@ -24,6 +26,7 @@ class custom_bottom extends StatelessWidget {
           style: AppStyles.stylesmall.copyWith(
             fontWeight: FontWeight.w500,
             color: Colors.white,
+            fontSize: fontSize !=null?fontSize :25
           ),
         ),
       ),

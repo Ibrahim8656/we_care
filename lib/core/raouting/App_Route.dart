@@ -9,7 +9,7 @@ class AppRouter {
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => const WelcomeScreen());
+        return MaterialPageRoute(builder: (_) => const HomeLayout());
       case '/Login':
       return MaterialPageRoute(
                               builder: (context) =>  LoginScreen());
