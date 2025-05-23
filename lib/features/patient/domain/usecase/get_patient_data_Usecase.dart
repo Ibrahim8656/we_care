@@ -5,7 +5,7 @@ class GetPatientDataUsecase {
   final PatientRepository _patientRepository;
 
   GetPatientDataUsecase(this._patientRepository);
-  Future<List >call()async{
+  Future<List<PatientEntitiy >>call()async{
     return await _patientRepository.getPatientData();
   }
 }

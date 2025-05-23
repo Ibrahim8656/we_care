@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:we_care/core/utils/colors.dart';
+import 'package:we_care/features/auth/domain/entity/patient_entitiy.dart';
 
 class custom_contaier extends StatelessWidget {
-  const custom_contaier({super.key});
-
+  const custom_contaier({super.key, required this.text, required this.image, required this.index});
+  final String text ,image;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Container(
+      
       width: MediaQuery.sizeOf(context).width * .45,
       decoration: BoxDecoration(
-        color: const Color.fromARGB(128, 235, 235, 235),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(.2),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 3), // changes position of shadow
+          ),
+        ],
+        color: Colors.white,
         borderRadius: BorderRadius.circular(15),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -18,12 +29,13 @@ class custom_contaier extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image(
-              image: AssetImage("assets/images/vv.png"),
+              image: AssetImage(image),
               height: MediaQuery.sizeOf(context).height * .06,
-              width: MediaQuery.sizeOf(context).width * .15,
+              width: MediaQuery.sizeOf(context).width * .20,
               fit: BoxFit.cover,
             ),
-            Text("Make appointment",style: TextStyle(
+            Text(text,style: TextStyle(
+              fontSize: MediaQuery.sizeOf(context).width * .04,
               color:  const Color.fromARGB(221, 3, 40, 83),
             ),)
           ],

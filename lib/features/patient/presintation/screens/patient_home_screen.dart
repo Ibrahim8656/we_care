@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:we_care/core/utils/app_styles.dart';
 import 'package:we_care/core/utils/colors.dart';
 import 'package:we_care/core/widgets/custom_bottom.dart';
+import 'package:we_care/features/auth/domain/entity/patient_entitiy.dart';
 import 'package:we_care/features/patient/presintation/cubit/patient_cubit.dart';
+import 'package:we_care/features/patient/presintation/screens/appointmentscreen.dart';
 import 'package:we_care/features/patient/widgets/custom_article.dart';
 import 'package:we_care/features/patient/widgets/custom_container.dart';
 
@@ -22,6 +24,7 @@ class PatientHomeScreen extends StatelessWidget {
             // TODO: implement listener
           },
           builder: (context, state) {
+            if (state is PatientLoaded) {}
             return Scaffold(
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,9 +58,21 @@ class PatientHomeScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        custom_contaier(),
+                        InkWell(onTap: (){
+                           Navigator.pushNamed(context, '/appointment_screen',arguments: PatientCubit.get(context).patientDataa[0]);
+                        },
+                          child: custom_contaier(
+                            text: "Make appointment",
+                            image: "assets/images/appointment.png",
+                            index: 1,
+                          ),
+                        ),
                         SizedBox(width: 10),
-                        custom_contaier(),
+                        custom_contaier(
+                          text: 'Callcenter',
+                          image: 'assets/images/callcenter.png',
+                          index: 2, 
+                        ),
                       ],
                     ),
                   ),
@@ -66,9 +81,21 @@ class PatientHomeScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        custom_contaier(),
+                        InkWell(onTap: (){
+                          Navigator.pushNamed(context, '/homevisit_screen',arguments: PatientCubit.get(context).patientDataa[0]);
+                        },
+                          child: custom_contaier(
+                            text: 'Home visti',
+                            image: 'assets/images/home.png',
+                            index: 3, 
+                          ),
+                        ),
                         SizedBox(width: 10),
-                        custom_contaier(),
+                        custom_contaier(
+                          text: 'lab test from home',
+                          image: 'assets/images/latb.png',
+                          index: 4, 
+                        ),
                       ],
                     ),
                   ),
@@ -111,9 +138,9 @@ class PatientHomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * .02),
+                  SizedBox(height: MediaQuery.sizeOf(context).height * .02),
                   Expanded(
-                    flex: 4,
+                    flex: 2,
                     child: Column(
                       children: [
                         Padding(
@@ -151,13 +178,10 @@ class PatientHomeScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Expanded(
-                          child: custom_article(),
-                        ),
+                        Expanded(child: custom_article()),
                       ],
                     ),
                   ),
-                  
                 ],
               ),
             );

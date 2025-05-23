@@ -1,47 +1,39 @@
 import 'package:dio/dio.dart';
+
 import 'package:we_care/core/strings/constants.dart';
+import 'package:we_care/features/Checkout/data/ApisKeys.dart';
 
 class DioHelper {
-  static Dio? dio;
-
+  static late Dio dio;
   static init() {
-    dio = Dio(BaseOptions(
-      baseUrl: supabaseurl,
-      receiveDataWhenStatusError: true,
-      connectTimeout:Duration(
-        seconds:  20 * 1000),
-      receiveTimeout: Duration(
-        seconds:  20 * 1000),
-      sendTimeout: Duration(
-        seconds:  20 * 1000),
-    ));
+    dio = Dio(BaseOptions( headers: {
+      'Content-Type': 'application/json',
+      'lang': 'en',
+    }));
   }
-
-  static Future<Response> postData({
-    required String url,
-    Map<String, dynamic>? query,
- 
-    String? contentType,
-  }) async {
-    dio!.options.headers = {
-       'apikey':API_key,
-      // 'Authorization': 'Bearer $API_key',
-      'Content-Type': contentType ?? 'application/json',
-    };
-    return await dio!.post(supabaseurl+url,data: query);
-  }
-
 
   
-  static Future<Response>getData({
-    required String url})async{
-        dio!.options.headers = {
-       'apikey':API_key,};
-     try{
-      Response response= await dio!.get(url);
-     return response;
-     }catch(e){
-       rethrow;
-     }
+
+  static Future<Response> postdata({
+  required String Url,
+  String? token,
+  dynamic data,
+  String? Content_Type
+}) async {
+  dio.options.headers = {
+    'Authorization': token,
+    'Content-Type': Content_Type,
+    'lang': 'en',
+  };
+  return dio.post(Url, data: data);
+}
+  static Future<Response> getData({required String url}) async {
+    dio.options.headers = {'apikey': API_key};
+    try {
+      Response response = await dio.get(url);
+      return response;
+    } catch (e) {
+      rethrow;
     }
+  }
 }

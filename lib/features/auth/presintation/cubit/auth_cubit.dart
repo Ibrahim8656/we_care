@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:we_care/core/helpers/cash_helper/shared_preferences.dart';
 import 'package:we_care/features/auth/domain/entity/patient_entitiy.dart';
 import 'package:we_care/features/auth/domain/usecase/add_patient_usecase.dart';
 import 'package:we_care/features/auth/domain/usecase/login_usecase.dart';
@@ -25,6 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
       RAuthLoading());
     try {
       await registerUsecase.call(email: email, password: password);
+     
       emit(RAuthSuccess());
     } catch (e) {
       emit(AuthError(error: e.toString()));
@@ -32,11 +35,12 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> AddPatient({
+  
     required String name,
     required String phone,
     required String job,
     required String address,
-    required String age,
+    required int age,
     required String gender,
  
   }) async {
@@ -49,13 +53,14 @@ class AuthCubit extends Cubit<AuthState> {
         address: address,
         job:job,
         age: age,
-        gender: gender,
+        gender: gender, id: CashHelper.Getdata("id"),
  
       );
       await addPatientUsecase.call(patient: patient);
       print("AddPatient Success handledddddddddddddddd");
       emit(AddpatientSuccess());
     } catch (e) {
+      print("Error in AddPatient: $e");
       emit(AddpatientError(error: e.toString()));
     }
   }
@@ -65,8 +70,8 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     emit(LoginLoading());
     try {
-       await loginUsecase.call(email: email, password: password);
-        emit(LoginSuccess());
+     final authResponse=  await loginUsecase.call(email: email, password: password);
+        emit(LoginSuccess(authResponse: authResponse));
       
     } catch (e) {
       emit(LoginError(error: e.toString()));

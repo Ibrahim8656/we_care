@@ -1,5 +1,5 @@
-import 'package:dio/dio.dart';
-import 'package:we_care/core/helpers/dio_helper/dio_helper.dart';
+
+import 'package:we_care/core/helpers/cash_helper/shared_preferences.dart';
 import 'package:we_care/features/auth/domain/entity/patient_entitiy.dart';
 import 'package:we_care/features/auth/domain/repository/repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -29,7 +29,7 @@ class AuthRepositoryImpl implements AuthRepository {
       }
     } catch (e) {
       print("Error during insert: $e");
-      rethrow;
+      
     }
   }
 
@@ -44,30 +44,34 @@ class AuthRepositoryImpl implements AuthRepository {
       );
       
       print("registered");
-      print(response.user!.email);
+      print(response.user!.id);
+      CashHelper.SaveData("id", response.user!.id);
     } catch (e) {
       
       Exception("Error adding patient: $e");
     }
   }
     @override
-  Future<void> Login({required String email, required String password})async {
-   try{
-    final AuthResponse response=  await Supabase.instance.client.auth.signInWithPassword(
-        email: email,
-        password: password,
-      );
-      if (response.session != null) {
-        print("Error logging in user: ${response.session!.accessToken}");
-      }
-      print("Logedin");
-   
-   }catch(e){
-    Exception("Error logging in user: $e");
-   rethrow;
-      
+  Future<AuthResponse> Login({required String email, required String password}) async {
+  try {
+    final AuthResponse response = await Supabase.instance.client.auth.signInWithPassword(
+      email: email,
+      password: password,
+    );
+
+    if (response.user != null) {
+      print("ID: ${response.user!.id}");
+      await CashHelper.SaveData("id", response.user!.id);
+      print(CashHelper.Getdata("id"));
+      return response;
+    } else {
+      throw Exception("Error logging in user: user is null");
     }
+  } catch (e) {
+    print("Error logging in user: $e");
+    rethrow;
   }
-  
+}
+
    }
 

@@ -1,15 +1,14 @@
 class PatientEntitiy {
-
+  final String id;
   final String name;
-
   final String phone;
   final String address;
   final String job;
-  final String age;
+  final int age;
   final String gender;
 
-  PatientEntitiy({
-
+  PatientEntitiy( {
+required this.id,
     required this.name,
     required this.phone,
     required this.address,
@@ -21,6 +20,7 @@ class PatientEntitiy {
 
   Map<String, dynamic> Tomap() {
     return {
+      "id": id,
       'name': name,
       'phone': phone,
       'address': address,
@@ -37,8 +37,9 @@ class PatientEntitiy {
       phone: json['phone'] as String,
       address: json['address'] as String,
       job: json['job'] as String,
-      age: json['age'] as String,
+      age: json['age'] as int,
       gender: json['gender'] as String,
+       id:  json['id']as String,
 
     );
   }
