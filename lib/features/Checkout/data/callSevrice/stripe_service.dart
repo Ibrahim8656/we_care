@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' show SupabaseClient;
 import 'package:we_care/core/helpers/dio_helper/dio_helper.dart';
-import 'package:we_care/core/strings/constants.dart';
 import 'package:we_care/features/Checkout/data/ApisKeys.dart';
 import 'package:we_care/features/Checkout/data/Stripe_models/paymentIntentModele.dart';
 import 'package:we_care/features/Checkout/data/Stripe_models/payment_intent_input_model.dart';

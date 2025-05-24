@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:we_care/core/utils/colors.dart';
+import 'package:we_care/features/auth/domain/entity/patient_entitiy.dart';
 import 'package:we_care/features/patient/data/repository.dart';
 import 'package:we_care/features/patient/domain/usecase/getAppointments.dart';
 import 'package:we_care/features/patient/domain/usecase/get_patient_data_Usecase.dart';
@@ -17,6 +18,7 @@ class HomeLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocProvider(
       create:
           (context) => PatientCubit(
@@ -35,6 +37,9 @@ class HomeLayout extends StatelessWidget {
           // TODO: implement listener
         },
         builder: (context, state) {
+              PatientEntitiy patient = PatientCubit.get(context).patientDataa.isNotEmpty
+                  ? PatientCubit.get(context).patientDataa[0]
+                  : PatientEntitiy(name: 'Loading...', id: '', phone: '', address: '', job: '', age: 1, gender: ''); // Fallback
           return Scaffold(
             key: _scaffoldKey, // Set the GlobalKey to Scaffold
             appBar: AppBar(
@@ -47,7 +52,7 @@ class HomeLayout extends StatelessWidget {
                 },
               ),
             ),
-            drawer: drawer(),
+            drawer: drawer(patient: patient,),
             body:
                 PatientCubit.get(context).screens[PatientCubit.get(
                   context,
