@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:we_care/core/utils/app_styles.dart';
 import 'package:we_care/core/widgets/custom_bottom.dart';
-import 'package:we_care/features/Checkout/data/Stripe_models/payment_intent_input_model.dart';
 import 'package:we_care/features/Checkout/methods/showPaymentoptions.dart';
 import 'package:we_care/features/auth/domain/entity/patient_entitiy.dart';
 
@@ -107,10 +106,7 @@ class doctorandpay extends StatelessWidget {
           children: [
             InkWell(
               onTap: (){
-                PaymentIntentInputModell paymentIntent = PaymentIntentInputModell(
-                  amount: '50000',
-                  currency: 'EGP',
-                );
+               
             showPaymentOptions(context,patientEntitiy );
               },
               child: custom_bottom(

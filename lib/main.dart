@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -14,6 +15,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await Supabase.initialize(url: supabaseurl, anonKey: API_key);
   await CashHelper.init();
+   await Firebase.initializeApp();
 
   DioHelper.init();
   runApp(MyApp(appRouter: AppRouter()));

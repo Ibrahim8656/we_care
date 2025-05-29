@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:we_care/core/helpers/cash_helper/shared_preferences.dart';
 import 'package:we_care/core/helpers/dio_helper/dio_helper.dart';
-import 'package:we_care/core/strings/constants.dart';
 import 'package:we_care/features/auth/domain/entity/patient_entitiy.dart';
 import 'package:we_care/features/patient/domain/entity/appointmentmodel.dart';
 import 'package:we_care/features/patient/domain/repository/repository.dart';

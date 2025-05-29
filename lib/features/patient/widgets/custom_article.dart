@@ -1,4 +1,3 @@
-import 'dart:ffi' as mediaQuery;
 
 import 'package:flutter/material.dart';
 

@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:we_care/core/utils/app_styles.dart';
 import 'package:we_care/core/utils/colors.dart';
 import 'package:we_care/core/widgets/custom_bottom.dart';
-import 'package:we_care/features/auth/domain/entity/patient_entitiy.dart';
 import 'package:we_care/features/patient/presintation/cubit/patient_cubit.dart';
-import 'package:we_care/features/patient/presintation/screens/appointmentscreen.dart';
 import 'package:we_care/features/patient/widgets/custom_article.dart';
 import 'package:we_care/features/patient/widgets/custom_container.dart';
 

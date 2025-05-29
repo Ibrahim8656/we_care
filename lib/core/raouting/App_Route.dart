@@ -6,7 +6,6 @@ import 'package:we_care/features/patient/presintation/screens/appointmentscreen.
 import 'package:we_care/features/patient/presintation/screens/home_layout.dart';
 import 'package:we_care/features/patient/presintation/screens/homevisitScreen.dart';
 import 'package:we_care/features/patient/presintation/screens/locationscreen.dart';
-import 'package:we_care/welcome_screen.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {

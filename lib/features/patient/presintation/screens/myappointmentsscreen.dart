@@ -8,7 +8,6 @@ import 'package:we_care/features/patient/domain/usecase/getAppointments.dart';
 import 'package:we_care/features/patient/domain/usecase/get_patient_data_Usecase.dart';
 import 'package:we_care/features/patient/domain/usecase/makeAppoinmentusecase.dart';
 import 'package:we_care/features/patient/presintation/cubit/patient_cubit.dart';
-import 'package:we_care/features/patient/widgets/doctorandpaywidget.dart';
 
 class Myappointmetns extends StatelessWidget {
   const Myappointmetns({super.key});

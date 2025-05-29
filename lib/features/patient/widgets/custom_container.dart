@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:we_care/core/utils/colors.dart';
-import 'package:we_care/features/auth/domain/entity/patient_entitiy.dart';
 
 class custom_contaier extends StatelessWidget {
   const custom_contaier({super.key, required this.text, required this.image, required this.index});
